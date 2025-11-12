@@ -10,12 +10,66 @@
     <div class="container">
         <h1>Upload or Update APK</h1>
         <p>Select a .apk file to upload. If the filename already exists, it will be overwritten.</p>
-        <form action="/upload" method="post" enctype="multipart/form-data">
+
+        <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
             <p><input type="file" name="apkfile" accept=".apk" required></p>
-            <p><input type="submit" value="Upload" class="button"></p>
+            <p><input type="submit" value="Upload" class="button" id="submit-btn"></p>
         </form>
+
+        <!-- Progress Bar Elements -->
+        <div class="progress-container" id="progress-container">
+            <div class="progress-bar" id="progress-bar">0%</div>
+        </div>
+        <p id="upload-status" style="color: #333;"></p>
+
         <a href="/">Back to list</a>
     </div>
+<script>
+        const form = document.getElementById('upload-form');
+        const fileInput = document.getElementById('apkfile-input');
+        const submitBtn = document.getElementById('submit-btn');
+        const progressContainer = document.getElementById('progress-container');
+        const progressBar = document.getElementById('progress-bar');
+        const uploadStatus = document.getElementById('upload-status');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const file = fileInput.files[0];
+            if (!file) {
+                uploadStatus.textContent = 'Please select a file to upload.';
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('apkfile', file);
+
+            const xhr = new XMLHttpRequest();
+
+            // Listen for progress events
+            xhr.upload.addEventListener('progress', function(e) {
+                if (e.lengthComputable) {
+                    const percentComplete = Math.round((e.loaded / e.total) * 100);
+                    progressBar.style.width = percentComplete + '%';
+                    progressBar.textContent = percentComplete + '%';
+                }
+            });
+
+            // Handle upload completion
+            xhr.addEventListener('load', function() {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    uploadStatus.textContent = 'Upload successful! Redirecting...';
+                    window.location.href = '/'; // Redirect to home on success
+                } else {
+                    uploadStatus.textContent = `Error: ${xhr.responseText || 'Upload failed.'}`;
+                }
+            });
+
+            xhr.open('POST', '/upload', true);
+            progressContainer.style.display = 'block'; // Show progress bar
+            submitBtn.disabled = true; // Disable button during upload
+            xhr.send(formData);
+        });
+    </script>
 </body>
 </html>
-- 

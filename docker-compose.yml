@@ -1,16 +1,17 @@
-version: '3.8'
-
 services:
   apkdepot:
-    # Build the image from the Dockerfile in the current directory
+    # 从当前目录的 Dockerfile 构建镜像
     build: .
     container_name: apkdepot
     ports:
-      # Map host port 8080 to container port 8080
+      # 将主机的 8080 端口映射到容器的 8080 端口
       - "8080:8080"
     volumes:
-      # Persist uploaded APKs on the host machine in the './apks' directory
+      # 将主机上的 ./apks 目录挂载到容器内，实现数据持久化
       - ./apks:/app/apks
     restart: unless-stopped
+
+    # --- 这是修正的部分 ---
+    # 使用标准的 key: 'value' 映射格式
     environment:
-      # You can override the port here if needed
+      PORT: '8080'
