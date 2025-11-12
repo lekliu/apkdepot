@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  apkdepot:
+    # Build the image from the Dockerfile in the current directory
+    build: .
+    container_name: apkdepot
+    ports:
+      # Map host port 8080 to container port 8080
+      - "8080:8080"
+    volumes:
+      # Persist uploaded APKs on the host machine in the './apks' directory
+      - ./apks:/app/apks
+    restart: unless-stopped
+    environment:
+      # You can override the port here if needed
