@@ -1,17 +1,51 @@
+# Docker Compose 文件，用于部署 ApkDepot 前后端分离应用
 services:
-  apkdepot:
-    # 从当前目录的 Dockerfile 构建镜像
-    build: .
-    container_name: apkdepot
-    ports:
-      # 将主机的 8080 端口映射到容器的 8080 端口
-      - "8080:8080"
-    volumes:
-      # 将主机上的 ./apks 目录挂载到容器内，实现数据持久化
-      - ./apks:/app/apks
-    restart: unless-stopped
 
-    # --- 这是修正的部分 ---
-    # 使用标准的 key: 'value' 映射格式
+  # ---------------------------------
+  # 后端 Go API 服务 (api)
+  # ---------------------------------
+  api:
+    # 从 ./apkdepot-api 目录中的 Dockerfile 构建镜像
+    build: ./apkdepot-api
+    container_name: apkdepot-api
+    # 除非手动停止，否则容器会自动重启
+    restart: unless-stopped
+    volumes:
+      # 将主机上的 ./apks 目录挂载到容器的 /app/apks 目录
+      # 这使得上传的 APK 文件能够持久化存储在主机上
+      - ./apks:/app/apks
     environment:
-      PORT: '8080'
+      # 设置服务在容器内监听的端口
+      - PORT=8080
+      
+      # --- !!! 安全警告：请在部署前修改以下值 !!! ---
+      # 用于签发和验证 JWT 的密钥，请使用一个长且随机的字符串
+      - JWT_SECRET=your-very-secret-and-long-string-for-jwt-change-me
+      
+      # 管理员登录凭证
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=your-strong-password-change-me
+    # 注意：此服务不直接暴露端口到主机，因为它只通过内部网络与前端(Nginx)通信。
+    # 这是一个更安全的做法。
+
+  # ---------------------------------
+  # 前端 UI 服务 (ui)，由 Nginx 托管
+  # ---------------------------------
+  ui:
+    # 从 ./apkdepot-ui 目录中的 Dockerfile 构建镜像
+    build: ./apkdepot-ui
+    container_name: apkdepot-ui
+    restart: unless-stopped
+    ports:
+      # 将主机的 8080 端口映射到 Nginx 容器的 80 端口
+      # 这是应用的统一入口点，用户将通过这个端口访问
+      - "8080:80"
+    depends_on:
+      # 确保 api 服务先于 ui 服务启动，以保证代理可以正常工作
+      - api
+
+# 定义一个名为 'apks' 的数据卷，虽然我们使用了绑定挂载，
+# 但在这里声明可以帮助 Docker 更好地管理它。
+# 如果不使用绑定挂载(bind mount)，则可以使用命名卷(named volume)。
+# volumes:
+#   apks:

@@ -1,0 +1,55 @@
+[33mcommit 18090782b399e0750f5cc6261ec1cfb75f54cdaa[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: lekliu <5212960+lekliu88@user.noreply.gitee.com>
+Date:   Thu Nov 13 11:44:00 2025 +0800
+
+    分成前后端两个项目
+
+ .gitignore                                         |   53 [32m+[m[31m-[m
+ .idea/inspectionProfiles/Project_Default.xml       |    1 [32m+[m
+ .idea/vcs.xml                                      |    2 [32m+[m[31m-[m
+ .idea/workspace.xml                                |  107 [32m+[m
+ ApkDepot_code_2025-11-13_10.txt                    |  698 [32m++++[m
+ ...57\274\345\207\272\344\273\243\347\240\201.ps1" |  164 [32m+[m
+ Dockerfile                                         |   42 [31m-[m
+ {.idea => apkdepot-api/.idea}/.gitignore           |    0
+ apkdepot-api/.idea/ApkDepot.iml                    |    9 [32m+[m
+ .../.idea/inspectionProfiles/Project_Default.xml   |   12 [32m+[m
+ apkdepot-api/.idea/modules.xml                     |    8 [32m+[m
+ apkdepot-api/.idea/vcs.xml                         |    6 [32m+[m
+ apkdepot-api/Dockerfile                            |   17 [32m+[m
+ apkdepot-api/apks/app-debug.apk                    |  Bin [31m0[m -> [32m166748971[m bytes
+ apkdepot-api/go.mod                                |    9 [32m+[m
+ apkdepot-api/go.sum                                |    6 [32m+[m
+ apkdepot-api/main.go                               |  304 [32m++[m
+ apkdepot-api/package-lock.json                     |    6 [32m+[m
+ apkdepot-ui/.editorconfig                          |    8 [32m+[m
+ apkdepot-ui/.gitattributes                         |    1 [32m+[m
+ apkdepot-ui/.gitignore                             |   36 [32m+[m
+ apkdepot-ui/.prettierrc.json                       |    6 [32m+[m
+ apkdepot-ui/.vscode/extensions.json                |    8 [32m+[m
+ apkdepot-ui/Dockerfile                             |   16 [32m+[m
+ apkdepot-ui/README.md                              |   44 [32m+[m
+ apkdepot-ui/eslint.config.js                       |   26 [32m+[m
+ apkdepot-ui/index.html                             |   13 [32m+[m
+ apkdepot-ui/jsconfig.json                          |    8 [32m+[m
+ apkdepot-ui/nginx.conf                             |   28 [32m+[m
+ apkdepot-ui/package-lock.json                      | 4215 [32m++++++++++++++++++++[m
+ apkdepot-ui/package.json                           |   33 [32m+[m
+ apkdepot-ui/public/favicon.ico                     |  Bin [31m0[m -> [32m4286[m bytes
+ apkdepot-ui/src/App.vue                            |   53 [32m+[m
+ apkdepot-ui/src/assets/main.css                    |  190 [32m+[m
+ apkdepot-ui/src/main.js                            |   12 [32m+[m
+ apkdepot-ui/src/router/index.js                    |   44 [32m+[m
+ apkdepot-ui/src/stores/auth.js                     |   85 [32m+[m
+ apkdepot-ui/src/views/HomeView.vue                 |  147 [32m+[m
+ apkdepot-ui/src/views/LoginView.vue                |  112 [32m+[m
+ apkdepot-ui/src/views/UploadView.vue               |   71 [32m+[m
+ apkdepot-ui/vite.config.js                         |   29 [32m+[m
+ docker-compose.yml                                 |   58 [32m+[m[31m-[m
+ go.mod                                             |    5 [31m-[m
+ go.sum                                             |    2 [31m-[m
+ main.go                                            |  195 [31m-[m
+ static/style.css                                   |   85 [31m-[m
+ templates/index.html                               |   71 [31m-[m
+ templates/upload.html                              |   75 [31m-[m
+ 48 files changed, 6629 insertions(+), 491 deletions(-)

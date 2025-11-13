@@ -1,0 +1,190 @@
+/* =================================
+   Global Styles & Base Layout
+   ================================= */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+main {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+h1 {
+  color: #0056b3;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.container {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* =================================
+   Navigation Bar
+   ================================= */
+.navbar {
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 0.5rem 0;
+  margin-bottom: 2rem;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #0056b3;
+}
+
+nav a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: #333;
+  padding: 0.5rem;
+}
+
+nav a.router-link-exact-active {
+  font-weight: bold;
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+}
+
+/* =================================
+   APK Table Styles
+   ================================= */
+.apk-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+}
+
+.apk-table th, .apk-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+}
+
+.apk-table th {
+  background-color: #f8f8f8;
+}
+
+.apk-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.apk-icon {
+  width: 48px;
+  height: 48px;
+  vertical-align: middle;
+  border-radius: 8px;
+}
+
+/* =================================
+   Buttons
+   ================================= */
+.button {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.button-danger {
+  background-color: #dc3545;
+}
+
+.button-danger:hover {
+  background-color: #c82333;
+}
+
+/* =================================
+   Form Styles (for Login & Upload)
+   ================================= */
+.login-container {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.error-message {
+  color: #dc3545;
+  margin-top: 1rem;
+}
+
+/* =================================
+   Progress Bar
+   ================================= */
+.progress-container {
+  width: 100%;
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  margin-top: 1rem;
+  overflow: hidden; /* Ensures the inner bar has rounded corners */
+}
+
+.progress-bar {
+  width: 0%;
+  height: 24px;
+  background-color: #007bff;
+  text-align: center;
+  line-height: 24px;
+  color: white;
+  font-weight: bold;
+  transition: width 0.3s ease-in-out;
+}
