@@ -37,9 +37,9 @@ services:
     container_name: apkdepot-ui
     restart: unless-stopped
     ports:
-      # 将主机的 8080 端口映射到 Nginx 容器的 80 端口
+      # 将主机的 8888 端口映射到 Nginx 容器的 80 端口
       # 这是应用的统一入口点，用户将通过这个端口访问
-      - "8080:80"
+      - "8888:80"
     depends_on:
       # 确保 api 服务先于 ui 服务启动，以保证代理可以正常工作
       - api
