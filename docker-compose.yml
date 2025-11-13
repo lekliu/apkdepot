@@ -16,15 +16,15 @@ services:
       - ./apks:/app/apks
     environment:
       # 设置服务在容器内监听的端口
-      - PORT=8080
+      - PORT=${PORT}
       
       # --- !!! 安全警告：请在部署前修改以下值 !!! ---
       # 用于签发和验证 JWT 的密钥，请使用一个长且随机的字符串
-      - JWT_SECRET=your-very-secret-and-long-string-for-jwt-change-me
+      - JWT_SECRET=${JWT_SECRET}
       
       # 管理员登录凭证
-      - ADMIN_USERNAME=admin
-      - ADMIN_PASSWORD=your-strong-password-change-me
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
     # 注意：此服务不直接暴露端口到主机，因为它只通过内部网络与前端(Nginx)通信。
     # 这是一个更安全的做法。
 
