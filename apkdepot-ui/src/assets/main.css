@@ -2,7 +2,8 @@
    Global Styles & Base Layout
    ================================= */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
   color: #333;
   margin: 0;
@@ -11,9 +12,10 @@ body {
 }
 
 main {
-  max-width: 960px;
+  max-width: 100%; /* 全宽 */
   margin: 2rem auto;
-  padding: 0 1rem;
+  padding: 0 2rem; /* 左右留出一些呼吸空间 */
+  box-sizing: border-box;
 }
 
 h1 {
@@ -26,7 +28,7 @@ h1 {
   background: #fff;
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* =================================
@@ -34,7 +36,7 @@ h1 {
    ================================= */
 .navbar {
   background: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 0.5rem 0;
   margin-bottom: 2rem;
 }
@@ -43,9 +45,10 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 960px;
+  max-width: 100%; /* 全宽 */
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 2rem; /* 左右留出一些呼吸空间 */
+  box-sizing: border-box;
 }
 
 .brand {
@@ -77,7 +80,8 @@ nav a.router-link-exact-active {
   margin-top: 1.5rem;
 }
 
-.apk-table th, .apk-table td {
+.apk-table th,
+.apk-table td {
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid #ddd;

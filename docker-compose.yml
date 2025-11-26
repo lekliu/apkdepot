@@ -17,6 +17,8 @@ services:
     environment:
       # 设置服务在容器内监听的端口
       - PORT=${PORT}
+      # --- 2. 设置时区变量 ---
+      - TZ=Asia/Shanghai
       
       # --- !!! 安全警告：请在部署前修改以下值 !!! ---
       # 用于签发和验证 JWT 的密钥，请使用一个长且随机的字符串
@@ -40,6 +42,12 @@ services:
       # 将主机的 8888 端口映射到 Nginx 容器的 80 端口
       # 这是应用的统一入口点，用户将通过这个端口访问
       - "8888:80"
+    volumes:
+      # --- 3. 前端容器也最好同步时间 (可选，主要是看日志方便) ---
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+       # --- 4. 设置时区 ---
+      - TZ=Asia/Shanghai
     depends_on:
       # 确保 api 服务先于 ui 服务启动，以保证代理可以正常工作
       - api

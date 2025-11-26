@@ -1,0 +1,18 @@
+{
+  "com.xxliu.adflowpro.app.debug": {
+    "packageName": "com.xxliu.adflowpro.app.debug",
+    "latestVersionCode": 2,
+    "latestVersionName": "1.0.2",
+    "latestFileName": "com.xxliu.adflowpro.app.debug_2.apk",
+    "minForceVersionCode": 0,
+    "rolloutRate": 0
+  },
+  "com.xxliu.lingwen": {
+    "packageName": "com.xxliu.lingwen",
+    "latestVersionCode": 0,
+    "latestVersionName": "",
+    "latestFileName": "",
+    "minForceVersionCode": 0,
+    "rolloutRate": 2201
+  }
+}
