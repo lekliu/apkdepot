@@ -24,21 +24,18 @@ func main() {
 	mux.HandleFunc("/api/check-update", handlers.CheckUpdate) // APP 自动检查
 	mux.HandleFunc("/api/version-list", handlers.VersionList) // APP 手动列表
 
-	// 静态文件服务 (APK 下载)
+	// 静态文件服务 (APK 下载 - 备用)
 	fs := http.FileServer(http.Dir(config.ApkDir))
 	mux.Handle("/apks/", http.StripPrefix("/apks/", fs))
 
 	// 3. 注册受保护路由 (需鉴权)
-	// 上传 APK
 	mux.Handle("/api/upload", handlers.AuthMiddleware(http.HandlerFunc(handlers.UploadApk)))
-	// 删除 APK
 	mux.Handle("/api/apks/", handlers.AuthMiddleware(http.HandlerFunc(handlers.DeleteApk)))
-	// 修改发布策略 (灰度/强制更新)
 	mux.Handle("/api/config/update", handlers.AuthMiddleware(http.HandlerFunc(handlers.UpdateConfig)))
 
 	// 4. CORS 配置
 	c := cors.New(cors.Options{
-		AllowedOrigins:   []string{"*"}, // 生产环境建议指定具体域名
+		AllowedOrigins:   []string{"*"}, 
 		AllowedMethods:   []string{"GET", "POST", "DELETE", "OPTIONS"},
 		AllowedHeaders:   []string{"Content-Type", "Authorization"},
 		AllowCredentials: true,
